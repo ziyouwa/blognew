@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://blog.opser.ml/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://blog.opser.ml/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://blog.opser.ml/main.css">
+
+
+
+  
+  
+  
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>Ubuntu20.10下安装podman | 技术宅的闲言碎语</title>
+<meta name="description" content="记录在Ubuntu上安装podman的过程">
+<link rel="canonical" href="https://blog.opser.ml/blog/podmanonunbuntu/">
+
+
+
+
+
+
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/podmanonunbuntu/"
+      },
+      "headline": "Ubuntu20.10下安装podman",
+      "image": ,
+      "datePublished": "2021-05-01T09:19:42+00:00",
+      "dateModified": "2021-05-01T09:19:42+00:00",
+      "author": {
+        "@type": "Organization",
+        "name": "Ubuntu20.10下安装podman"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ubuntu20.10下安装podman",
+        
+        "logo": {
+          "@type": "ImageObject",
+          "url": "/logo-doks.png"
+        }
+        
+      },
+      "description": "记录在Ubuntu上安装podman的过程"
+    }
+    </script>
+  
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://blog.opser.ml/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Blog",
+            "item": "https://blog.opser.ml/blog/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Podmanonunbuntu",
+            "item": "https://blog.opser.ml/blog/podmanonunbuntu/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.opser.ml/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.opser.ml/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://blog.opser.ml/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://blog.opser.ml/site.webmanifest" crossorigin>
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="blog single">
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://blog.opser.ml">技术宅的闲言碎语</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+				<li class="nav-item">
+					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/aaranxu/adidoks"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+				</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+					
+						<li class="nav-item">
+							<a class="nav-link" href="https://blog.opser.ml/docs/getting-started/introduction/">AdiDoks文档</a>
+						</li>
+					
+						<li class="nav-item blog active">
+							<a class="nav-link" href="https://blog.opser.ml/blog/">博客</a>
+						</li>
+					
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xxl-9">
+        <article>
+          <div class="blog-header">
+            <h1>Ubuntu20.10下安装podman</h1>
+            
+<p><small>Posted 2021-05-01 17:19:42&nbsp;&hyphen;&nbsp;<strong>6&nbsp;min read</strong></small><p>
+
+          </div>
+          <p class="lead">这是在Ubuntu上安装podman的过程记录，包括中途遇到的问题及解决方案。</p>
+          <h1 id="ubuntu20-10xia-shi-yong-podman">Ubuntu20.10下使用podman</h1>
+<p>Unbuntu20.10自带的源已经完整支持podman，而且安装十分简单：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">~$</span><span> apt install</span><span style="color:#bf616a;"> -y</span><span>  podman
+</span><span style="color:#bf616a;">...
+</span><span style="color:#bf616a;">The</span><span> following additional packages will be installed:
+</span><span>  </span><span style="color:#bf616a;">buildah</span><span> conmon containernetworking-plugins crun fuse-overlayfs fuse3
+</span><span>  </span><span style="color:#bf616a;">golang-github-containers-common</span><span> libavahi-glib1 libfuse3-3 libostree-1-1 libslirp0 libyajl2
+</span><span>  </span><span style="color:#bf616a;">slirp4netns</span><span> tini uidmap
+</span><span style="color:#bf616a;">Suggested</span><span> packages:
+</span><span>  </span><span style="color:#bf616a;">containers-storage
+</span><span style="color:#bf616a;">The</span><span> following packages will be REMOVED:
+</span><span>  </span><span style="color:#bf616a;">fuse
+</span><span style="color:#bf616a;">The</span><span> following NEW packages will be installed:
+</span><span>  </span><span style="color:#bf616a;">buildah</span><span> conmon containernetworking-plugins crun fuse-overlayfs fuse3
+</span><span>  </span><span style="color:#bf616a;">golang-github-containers-common</span><span> libavahi-glib1 libfuse3-3 libostree-1-1 libslirp0 libyajl2
+</span><span>  </span><span style="color:#bf616a;">podman</span><span> slirp4netns tini uidmap
+</span><span style="color:#bf616a;">0</span><span> upgraded, 16 newly installed, 1 to remove and 0 not upgraded.
+</span><span style="color:#bf616a;">Need</span><span> to get 27.4 MB of archives.
+</span><span style="color:#bf616a;">After</span><span> this operation, 125 MB of additional disk space will be used.
+</span><span style="color:#bf616a;">Do</span><span> you want to continue? </span><span style="color:#b48ead;">[</span><span>Y/n</span><span style="color:#b48ead;">]
+</span><span>
+</span></code></pre>
+<p>如上图所示，该命令会自动安装podman、crun、buildah和slirp4netns。但是，接下来有两个小小的问题需要解决。</p>
+<h2 id="mei-you-yun-xing-shi">没有运行时？</h2>
+<p>安装完毕后，直接执行podman info，会提示如下：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">~$</span><span> podman info
+</span><span style="color:#bf616a;">Error:</span><span> default OCI runtime &quot;</span><span style="color:#a3be8c;">runc</span><span>&quot; not found: invalid argument
+</span></code></pre>
+<p>大概意思就是没有找到默认的容器运行时runc。</p>
+<p>搜索的结果，大多数都是<a href="https://github.com/containers/podman/issues/6072">建议直接安装runc</a>。但是如果您阅读的时候很仔细，就会发现上面安装podman时，已经安装了一个叫crun的东西。它到底是什么呢？和runc有什么关系？在<a href="https://www.redhat.com/sysadmin/introduction-crun">这里</a>可以找到答案，大意就是二者都是容器运行时，只不过crun更小，更先进，文章作者建议是用crun。既然ubuntu20.10默认安装的是crun，那么我们就来研究一下，到底是什么原因导致podman没能识别它呢？</p>
+<p>我们继续找，发现了<a href="https://serverfault.com/questions/989509/how-can-i-change-the-oci-runtime-in-podman">这个</a>。经过验证，有两个配置文件都能设置podman的runtime，使用其中之一即可。推荐使用containers.conf，因为ubuntu20.10里面我并没有找到libpod.conf，不知道是不是旧版本的配置文件名。它们分别是</p>
+<p>libpod.conf</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">runtime</span><span> = &quot;</span><span style="color:#a3be8c;">crun</span><span>&quot;
+</span></code></pre>
+<p>和containers.conf</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">[engine]
+</span><span style="color:#bf616a;">runtime</span><span> = &quot;</span><span style="color:#a3be8c;">crun</span><span>&quot;
+</span></code></pre>
+<p>/etc/container/目录下默认存在containers.conf文件，可以修改它，针对所有用户起作用，或是放在$HOME/.config/containers目录下，只针对当前用户生效。建议后者，毕竟podman的优势之一就是不需要root权限执行。</p>
+<h2 id="wei-shi-yao-cgrouphuan-shi-v1">为什么CGROUP还是V1？</h2>
+<p>执行podman info命令，现在可以正常得到信息了，不过我们可以看到，下面的输出内容里面，写明了cgroupVersion还是v1。明明crun的优势就是支持v2啊。</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">:~$</span><span> podman info
+</span><span style="color:#bf616a;">....
+</span><span style="color:#bf616a;">host:
+</span><span>  </span><span style="color:#bf616a;">arch:</span><span> amd64
+</span><span>  </span><span style="color:#bf616a;">buildahVersion:</span><span> 1.15.2
+</span><span>  </span><span style="color:#bf616a;">cgroupVersion:</span><span> v1
+</span><span>
+</span></code></pre>
+<p>通过mount命令，我们可以看到系统默认都挂载了v1和v2版本</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">~$</span><span> mount
+</span><span style="color:#bf616a;">...
+</span><span style="color:#bf616a;">cgroup2</span><span> on /sys/fs/cgroup/unified type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate)
+</span><span style="color:#bf616a;">cgroup</span><span> on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,name=systemd)
+</span><span style="color:#bf616a;">...
+</span></code></pre>
+<p>既然支持新版了，那么就去掉v1吧，具体步骤如下，参考在[<a href="https://mbien.dev/blog/tags/debian">这里</a>]:</p>
+<ul>
+<li>
+<p>编辑/etc/default/grub</p>
+</li>
+<li>
+<p>添加systemd.unified_cgroup_hierarchy=1到 GRUB_CMDLINE_LINUX_DEFAULT里面，用空格与原有的值隔开</p>
+</li>
+<li>
+<p>sudo grub-mkconfig -o /boot/grub/grub.cfg</p>
+</li>
+<li>
+<p>重启，mount查看输出如下：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span>
+</span><span style="color:#bf616a;">cgroup2</span><span> on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate)
+</span><span>
+</span></code></pre>
+</li>
+</ul>
+<p>至此安装完毕，podman info输出如下</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>:~$ podman info
+</span><span>host:
+</span><span>  arch: amd64
+</span><span>  buildahVersion: 1.15.2
+</span><span>  cgroupVersion: v2
+</span><span>  conmon:
+</span><span>    package: &#39;conmon: /usr/libexec/podman/conmon&#39;
+</span><span>    path: /usr/libexec/podman/conmon
+</span><span>    version: &#39;conmon version 2.0.20, commit: unknown&#39;
+</span><span>  cpus: 4
+</span><span>  distribution:
+</span><span>    distribution: ubuntu
+</span><span>    version: &quot;20.10&quot;
+</span><span>...
+</span><span>ociRuntime:
+</span><span>    name: crun
+</span><span>    package: &#39;crun: /usr/bin/crun&#39;
+</span><span>    path: /usr/bin/crun
+</span><span>    version: |-
+</span><span>      crun version 0.14.1
+</span><span>      commit: 598ea5e192ca12d4f6378217d3ab1415efeddefa
+</span><span>      spec: 1.0.0
+</span><span>      +SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +YAJL
+</span><span>  os: linux
+</span><span>  remoteSocket:
+</span><span>    exists: true
+</span><span>    path: /run/user/1000/podman/podman.sock
+</span><span>  rootless: true
+</span><span>  slirp4netns:
+</span><span>    executable: /usr/bin/slirp4netns
+</span><span>    package: &#39;slirp4netns: /usr/bin/slirp4netns&#39;
+</span><span>    version: |-
+</span><span>      slirp4netns version 1.0.1
+</span><span>      commit: 6a7b16babc95b6a3056b33fb45b74a6f62262dd4
+</span><span>      libslirp: 4.3.1
+</span><span>...
+</span></code></pre>
+<h2 id="ti-shi-wei-zhao-dao-initde-er-jin-zhi-cheng-xu">提示未找到INIT的二进制程序</h2>
+<p>这个是在gentoo上发现的问题，一并贴在这里吧。个人的理解是这里可以指定初始化容器时要执行的程序。以前应该是调用初始化脚本，现在容器初始化已经标准化了(conmon包?仅个人猜测)。于是这就相当于一个hook，可以供用户插入自己的初始化过程。不使用它的话直接设置为false即可。</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span>&gt; podman run</span><span style="color:#bf616a;"> --init -ti</span><span> cp /sbin/init
+</span><span style="color:#bf616a;">Error:</span><span> container-init binary not found on the host: stat /usr/libexec/podman/catatonit: no such file or directory
+</span></code></pre>
+<p>参考[<a href="https://unix.stackexchange.com/questions/619212/podman-run-with-init-gives-me-error-container-init-binary-not-found-on-the-h">这里</a>], 该问题我也给了自己的答案：
+修改container的配置，有两个地方可以修改:</p>
+<p>/etc/containers/containers.conf(对所有用户生效),</p>
+<p>或者是:
+${HOME}/.config/containers/containers.conf(仅对当前用户生效)</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">[containers]
+</span><span style="color:#bf616a;">init</span><span> = false
+</span></code></pre>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item">Powered by <a href="https://github.com/ziyouwa/">Ziyouwa</a>, <a href="https://www.netlify.com/">Netlify</a>, <a href="https://www.getzola.org/">Zola</a>, and <a href="https://github.com/aaranxu/adidoks">AdiDoks</a></li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+						
+							<li class="list-inline-item"><a href="https://blog.opser.ml/privacy-policy/">Privacy</a></li>
+						
+							<li class="list-inline-item"><a href="https://blog.opser.ml/docs/contributing/code-of-conduct/">Code of Conduct</a></li>
+						
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script type="text/javascript" src="https://blog.opser.ml/js/main.js" defer></script>
+
+  <script type="text/javascript" src="https://blog.opser.ml/plugins/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://blog.opser.ml/search_index.en.js" defer></script>
+  <script type="text/javascript" src="https://blog.opser.ml/js/search.js" defer></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://blog.opser.ml/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://blog.opser.ml/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://blog.opser.ml/main.css">
+
+
+
+  
+  
+  
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>Wlroots 双屏下鼠标移动问题 | 技术宅的闲言碎语</title>
+<meta name="description" content="Wlroots 类窗口管理器，双显示器环境下，鼠标不能移动到其他屏幕的问题及解决方法">
+<link rel="canonical" href="https://blog.opser.ml/blog/dualmonitorcursorsonwlsrootcompositor/">
+
+
+
+
+
+
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/dualmonitorcursorsonwlsrootcompositor/"
+      },
+      "headline": "Wlroots 双屏下鼠标移动问题",
+      "image": ,
+      "datePublished": "2022-02-20T16:22:39",
+      "dateModified": "2022-02-20T16:22:39",
+      "author": {
+        "@type": "Organization",
+        "name": "Wlroots 双屏下鼠标移动问题"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Wlroots 双屏下鼠标移动问题",
+        
+        "logo": {
+          "@type": "ImageObject",
+          "url": "/logo-doks.png"
+        }
+        
+      },
+      "description": "Wlroots 类窗口管理器，双显示器环境下，鼠标不能移动到其他屏幕的问题及解决方法"
+    }
+    </script>
+  
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://blog.opser.ml/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Blog",
+            "item": "https://blog.opser.ml/blog/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Dualmonitorcursorsonwlsrootcompositor",
+            "item": "https://blog.opser.ml/blog/dualmonitorcursorsonwlsrootcompositor/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://blog.opser.ml/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://blog.opser.ml/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://blog.opser.ml/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://blog.opser.ml/site.webmanifest" crossorigin>
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="blog single">
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://blog.opser.ml">技术宅的闲言碎语</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+				<li class="nav-item">
+					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/aaranxu/adidoks"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+				</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+					
+						<li class="nav-item">
+							<a class="nav-link" href="https://blog.opser.ml/docs/getting-started/introduction/">AdiDoks文档</a>
+						</li>
+					
+						<li class="nav-item blog active">
+							<a class="nav-link" href="https://blog.opser.ml/blog/">博客</a>
+						</li>
+					
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xxl-9">
+        <article>
+          <div class="blog-header">
+            <h1>Wlroots 双屏下鼠标移动问题</h1>
+            
+<p><small>Posted 2022-02-20 16:22:39&nbsp;&hyphen;&nbsp;<strong>5&nbsp;min read</strong></small><p>
+
+          </div>
+          <p class="lead">双屏显示对IT行业来说是非常普遍的需求。Sway 通过简单配置即可正常使用双屏，分别设置最佳分辨率和 dpi, 文字显示非常舒服，推荐新手使用。最近折腾 river，一个很有意思的窗口管理器。它自身不支持双屏分别设置 dpi，官方 issues 中推荐用 kanshi、wlr-randr 等工具实现。我选了 kanshi，结果鼠标只能在第一显示器范围内移动，无法移动到第二显示器，于是又是一翻折腾……</p>
+          <p>最后找到了这个<a href="https://githubhot.com/repo/djpohly/dwl/issues/135">参考帖</a>，原因、解决方案都说得非常清楚，理论上 wlroots 的窗口管理器都可能出现这个问题，比如文中是dwl，我是用的river。用中文当一次复读机，备忘。会先贴英文原文，再用中文阐述，方便对照。</p>
+<h2 id="xian-xiang">现象</h2>
+<blockquote>
+<p>dwl version 0.2.1-3 mesa version 21.1.6-1  wlroots version 0.14.1-1 wayland version 1.19.0-1 wlr-randr version 0.2.0-1<br>
+When using two monitors with different DPI, we can use the wlr-output-management-unstable-v1 protocol to adjust the screen scaling. I am using wlr-randr with the --scale option to achieve this. However, the mouse cursor becomes restricted to one screen after applying a scale factor. Setting both screens to the same scaling does not help, unless they are both set to x1 scaling, in which case the cursor can move between them again.<br>
+Weston doesn't support the protocol, but I couldn't find anything about this on the Sway tracker, so maybe they have been able to solve this.</p>
+</blockquote>
+<p>wlroots 催生了一大堆原生 wayland 窗口管理器，作者提到它支持 <strong>wlr-output-management-unstable-v1</strong> 协议，Weston 还不支持。故障现象是：用 kanshi、wlr-randr，对多个显示器的分辨率和 dpi 进行设置。设置完毕后启用，就会发现鼠标只能在第一显示器范围内移动，无法移动到第二显示器。</p>
+<h2 id="yuan-yin-fen-xi">原因分析</h2>
+<p>第二显示器的位置，是按缩放后的数值进行计算的。当两个显示器的 dpi 设置不为 1 时，如果还按照之前的计算方法，就会导致两个显示器显示区域之间出现空隙，导致光标无法移动到另一个显示器。</p>
+<blockquote>
+<p>Solved the issue. The problem was that the new monitor position is always applied after the scaling, and therefore I had a gap between the two monitors. The position needs to be corrected to account for the scaling factor. </p>
+</blockquote>
+<h2 id="jie-jue-fang-fa">解决方法</h2>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>%zsh&gt; cat .config/kanshi/config
+</span><span>profile dual {
+</span><span>	output HDMI-A-1 enable scale 1.4 position 0,0 
+</span><span>    output DVI-I-1 enable scale 1.2 position -1920,0	
+</span><span>}
+</span></code></pre>
+<blockquote>
+<p>In this case, a scaling factor of 1.6 means that the horizontal position of a 1920x1080 monitor should be 1920/1.4 = 1372 units away from the origin. Note that this is rounded up to the next integer, because the tools I have mentioned do not support floats for positioning (maybe it is prohibited by the protocol). I found that 1371 caused issues, better to have a very small gap than an overlap in the outputs.<br>
+An example wlr-randr command to achieve what I had wanted is:</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>wlr-randr --output DVI-I-1 --pos -1372,0 --scale 1.4
+</span></code></pre>
+<p>简单来说，第二显示器的 Position计算公式应该是 <strong>Position/scale</strong>，Position 和 scale 的取值跟第二显示器的位置有关，如果它在左边，就取它的，如果是在右边，就取第一显示器的。上例中，HDMI 显示器在 (0,0) 位置，DVI 显示器在 HDMI 显示器的左边，所以它的 x 坐标理论上应该是 DVI 的显示器宽度取负值，即 -1920，位置是 (-1920,0)。但实际上应该是 -1920 / 1.4 = -1372。这里除不尽时，需注意取整方向，原则是<strong>留空比重叠好</strong>。下面用一个表格来总结一下第二显示器的 Position 取值：</p>
+<table><thead><tr><th>第二显示器位置</th><th>Position.X</th><th>Position.Y</th><th>取整方式</th></tr></thead><tbody>
+<tr><td>在左</td><td>-D2.X/D2.scale</td><td>0</td><td>绝对值向上取整，再加符号</td></tr>
+<tr><td>在右</td><td>D1.X/D1.scale</td><td>0</td><td>去掉小数部分</td></tr>
+<tr><td>在上</td><td>0</td><td>-D2.Y/D2.scale</td><td>绝对值向上取整，再加符号</td></tr>
+<tr><td>在下</td><td>0</td><td>D1.Y/D1.scale</td><td>去掉小数部分</td></tr>
+</tbody></table>
+<p>可以根据这个表扩展更多显示器时的设置。</p>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item">Powered by <a href="https://github.com/ziyouwa/">Ziyouwa</a>, <a href="https://www.netlify.com/">Netlify</a>, <a href="https://www.getzola.org/">Zola</a>, and <a href="https://github.com/aaranxu/adidoks">AdiDoks</a></li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+						
+							<li class="list-inline-item"><a href="https://blog.opser.ml/privacy-policy/">Privacy</a></li>
+						
+							<li class="list-inline-item"><a href="https://blog.opser.ml/docs/contributing/code-of-conduct/">Code of Conduct</a></li>
+						
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script type="text/javascript" src="https://blog.opser.ml/js/main.js" defer></script>
+
+  <script type="text/javascript" src="https://blog.opser.ml/plugins/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="https://blog.opser.ml/search_index.en.js" defer></script>
+  <script type="text/javascript" src="https://blog.opser.ml/js/search.js" defer></script>
+
+  
+</body>
+</html>
