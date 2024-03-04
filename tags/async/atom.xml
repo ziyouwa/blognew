@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://blog.windeye.top/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://purl.org/atompub/base/1.0/" xml:lang="zh-Hans" xml:base="https:&#x2F;&#x2F;blog.windeye.top">
+    <str:translations xmlns:str="https://github.com/welpo/tabi">
+        <str:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</str:about_feeds>
+        <str:visit_the_site>造访网站</str:visit_the_site>
+        <str:recent_posts>近期文章</str:recent_posts>
+    </str:translations><link rel="extra-stylesheet" href="https://blog.windeye.top/skins/zyw.css?h=4bbeae109422ff1bdcf0" /><title>描边大叔的博客 - async</title>
+        <subtitle>一些功课及感悟，不限于技术</subtitle>
+    <link href="https://blog.windeye.top/tags/async/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://blog.windeye.top"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-03-04T11:01:45+00:00</updated>
+    <id>https://blog.windeye.top/tags/async/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>WASI 0.2 异步运行时的设计思路</title>
+        <published>2024-03-01T22:52:23+00:00</published>
+        <updated>2024-03-04T11:01:45+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/blog/asyncruntimeforwasi0-2/" type="text/html"/>
+        <id>https://blog.windeye.top/blog/asyncruntimeforwasi0-2/</id>
+        <summary type="html">博主曾是 async-std 的作者之一，有丰富的编写异步运行时的经验，本文记录了他为 WASI 0.2 设计异步运行时的思路</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>通过迭代WebServer逐步深入Rust异步编程</title>
+        <published>2024-01-02T14:04:03+00:00</published>
+        <updated>2024-01-19T18:41:44+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/rust_async/learningrustasyncwithwebserver/" type="text/html"/>
+        <id>https://blog.windeye.top/rust_async/learningrustasyncwithwebserver/</id>
+        <summary type="html">从最简单的Web Server实例开始，逐步深入学习Rust异步编程相关知识。</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Embassy源码分析-time</title>
+        <published>2023-11-18T22:03:39+00:00</published>
+        <updated>2023-11-25T14:03:39+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/embassy/time/" type="text/html"/>
+        <id>https://blog.windeye.top/embassy/time/</id>
+        <summary type="html">Embassy 源码分析，time部分</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Embassy文档-层次结构</title>
+        <published>2023-11-08T14:03:39+00:00</published>
+        <updated>2023-11-08T15:02:39+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/embassy/layerbylayer/" type="text/html"/>
+        <id>https://blog.windeye.top/embassy/layerbylayer/</id>
+        <summary type="html">Embassy 文档的中文翻译</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Embassy文档-基本应用</title>
+        <published>2023-11-08T12:02:39+00:00</published>
+        <updated>2023-11-08T14:02:39+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/embassy/basic-application/" type="text/html"/>
+        <id>https://blog.windeye.top/embassy/basic-application/</id>
+        <summary type="html">Embassy 文档的中文翻译</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Embassy文档-开始</title>
+        <published>2023-11-07T15:02:39+00:00</published>
+        <updated>2023-11-07T23:02:39+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/embassy/getting-started/" type="text/html"/>
+        <id>https://blog.windeye.top/embassy/getting-started/</id>
+        <summary type="html">Embassy 文档的中文翻译</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Embassy文档-首页</title>
+        <published>2023-11-06T15:02:39+00:00</published>
+        <updated>2023-11-06T23:02:39+00:00</updated>
+        <author>
+            <name>描边大叔</name>
+        </author>
+        <link rel="alternate" href="https://blog.windeye.top/embassy/index/" type="text/html"/>
+        <id>https://blog.windeye.top/embassy/index/</id>
+        <summary type="html">Embassy 文档的中文翻译</summary>
+        </entry>
+</feed>
